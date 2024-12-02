@@ -90,6 +90,9 @@ php artisan config:cache
 echo "Running database migrations..."
 php artisan migrate --seed --force
 # Set up nginx
+sudo rm -r /etc/nginx/sites-available/*
+sudo rm -r /etc/nginx/sites-enabled/*
+sudo touch /etc/nginx/sites-available/pterodactyl
 echo "Configuring NGINX..."
 sudo bash -c "cat > /etc/nginx/sites-available/pterodactyl << 'EOF'
 server {
