@@ -77,3 +77,32 @@ echo "Wings installation complete!"
 echo "Configure the node in the Panel and update /etc/pterodactyl/config.yml."
 echo "ip to use for allocation"
 hostname -I | awk '{print $1}'
+
+echo "Follow install instructions listed on github:"
+read -p "> " user_command
+if [[ -n "$user_command" ]]; then
+    eval "$user_command"
+else
+    echo "No command entered. Exiting."
+fi
+
+# File path
+CONFIG_FILE="/etc/pterodactyl/config.yml"
+
+# String to append
+ALLOWED_ORIGINS="
+allowed_origins:
+  - http://localhost
+  - http://127.0.0.1
+"
+
+# Check if allowed_origins already exists
+if grep -q "allowed_origins:" "$CONFIG_FILE"; then
+    echo "allowed_origins already configured in $CONFIG_FILE"
+else
+    echo "Appending allowed_origins to $CONFIG_FILE..."
+    echo "$ALLOWED_ORIGINS" | sudo tee -a "$CONFIG_FILE" > /dev/null
+    echo "allowed_origins successfully added to $CONFIG_FILE"
+fi
+
+sudo systemctl restart wings
