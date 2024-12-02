@@ -86,23 +86,7 @@ else
     echo "No command entered. Exiting."
 fi
 
-# File path
-CONFIG_FILE="/etc/pterodactyl/config.yml"
-
-# String to append
-ALLOWED_ORIGINS="
-allowed_origins:
-  - http://localhost
-  - http://127.0.0.1
-"
-
-# Check if allowed_origins already exists
-if grep -q "allowed_origins:" "$CONFIG_FILE"; then
-    echo "allowed_origins already configured in $CONFIG_FILE"
-else
-    echo "Appending allowed_origins to $CONFIG_FILE..."
-    echo "$ALLOWED_ORIGINS" | sudo tee -a "$CONFIG_FILE" > /dev/null
-    echo "allowed_origins successfully added to $CONFIG_FILE"
-fi
+echo "adding allowed orgins:"
+echo -e "allowed_origins:\n  - http://localhost\n  - http://127.0.0.1" | sudo tee -a /etc/pterodactyl/config.yml
 
 sudo systemctl restart wings
