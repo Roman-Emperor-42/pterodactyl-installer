@@ -15,7 +15,7 @@ fi
 # Update system and install dependencies
 echo "Updating system and installing dependencies..."
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl wget dmidecode software-properties-common
+sudo apt install -y curl wget dmidecode software-properties-common tar unzip
 
 # Install Docker
 echo "Installing Docker..."
