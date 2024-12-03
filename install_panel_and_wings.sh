@@ -36,7 +36,7 @@ sudo tar -xzvf panel.tar.gz
 sudo chmod -R 755 storage/* bootstrap/cache/
 
 cp .env.example .env
-composer install --no-dev --optimize-autoloader
+composer install --no-interaction --no-dev --optimize-autoloader
 php artisan key:generate --force
 
 echo "Setting permissions..."
@@ -67,8 +67,7 @@ sudo sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=securepassword|" /var/www/pterodactyl/
 
 # Configure .env file with localhost and no database password
 echo "Updating environment configuration..."
-read -p "Enter a valid email address for the Egg Author: " email_address
-sudo sed -i "s|^APP_SERVICE_AUTHOR=.*|APP_SERVICE_AUTHOR=$email_address|" /var/www/pterodactyl/.env
+sudo sed -i "s|^APP_SERVICE_AUTHOR=.*|APP_SERVICE_AUTHOR=admin@admin.com|" /var/www/pterodactyl/.env
 sudo sed -i "s|^APP_URL=.*|APP_URL=http://localhost|" /var/www/pterodactyl/.env
 
 sudo sed -i "s|^DB_CONNECTION=.*|DB_CONNECTION=mysql|" /var/www/pterodactyl/.env
@@ -159,7 +158,7 @@ expect eof
 EOF
 
 echo "Purge unneeded packages and dependencies clearing over 100mb"
-sudo apt purge thunderbird libreoffice-* rhythmbox totem cheese shotwell simple-scan aisleriot gnome-mines gnome-sudoku snapd flatpak yelp orca brltty gnome-accessibility-themes bluez gnome-bluetooth cups printer-driver-* hplip language-pack-* gnome-calendar gnome-maps gnome-characters gnome-logs gnome-contacts gnome-software gnome-system-monitor gnome-disk-utility gnome-control-center ubuntu-mono adwaita-icon-theme fonts-* nautilus gvfs avahi-daemon modemmanager wpa_supplicant qemu libvirt-* lxd lxc sane ghostscript fwupd policykit-1 zeitgeist geoclue
+sudo apt purge thunderbird libreoffice-* rhythmbox totem cheese shotwell simple-scan aisleriot gnome-mines gnome-sudoku snapd flatpak yelp orca brltty gnome-accessibility-themes bluez gnome-bluetooth cups printer-driver-* hplip language-pack-* gnome-calendar gnome-maps gnome-characters gnome-logs gnome-contacts gnome-software gnome-system-monitor gnome-disk-utility gnome-control-center ubuntu-mono adwaita-icon-theme fonts-* nautilus gvfs avahi-daemon modemmanager qemu libvirt-* lxd lxc sane ghostscript fwupd policykit-1 zeitgeist geoclue
 sudo apt autoremove --purge -y
 sudo apt clean
 
