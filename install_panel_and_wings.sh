@@ -191,7 +191,12 @@ sudo apt install -y curl wget dmidecode software-properties-common tar unzip
 
 # Install Docker
 echo "Installing Docker..."
-curl -sSL https://get.docker.com/ | CHANNEL=stable bash
+if sudo /usr/bin/docker --version &> /dev/null; then
+    echo "Docker is already installed. Version: $(sudo /usr/bin/docker --version)"
+else
+    echo "Docker binary is not accessible or not installed. Installing Docker..."
+    curl -sSL https://get.docker.com/ | CHANNEL=stable bash
+fi
 sudo systemctl enable --now docker
 
 # Check Docker swap support
