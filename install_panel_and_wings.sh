@@ -158,6 +158,11 @@ send "Admin1234\r"
 expect eof
 EOF
 
+echo "Purge unneeded packages and dependencies clearing over 100mb"
+sudo apt purge thunderbird libreoffice-* rhythmbox totem cheese shotwell simple-scan aisleriot gnome-mines gnome-sudoku snapd flatpak yelp orca brltty gnome-accessibility-themes bluez gnome-bluetooth cups printer-driver-* hplip language-pack-* gnome-calendar gnome-maps gnome-characters gnome-logs gnome-contacts gnome-software gnome-system-monitor gnome-disk-utility gnome-control-center ubuntu-mono adwaita-icon-theme fonts-* nautilus gvfs avahi-daemon modemmanager wpa_supplicant qemu libvirt-* lxd lxc sane ghostscript fwupd policykit-1 zeitgeist geoclue
+sudo apt autoremove --purge -y
+sudo apt clean
+
 echo "Admin user created successfully!"
 
 echo "Pterodactyl installation completed! Access it at http://localhost or http://127.0.0.1"
