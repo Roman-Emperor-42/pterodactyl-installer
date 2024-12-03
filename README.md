@@ -32,8 +32,8 @@ A streamlined script to automate the installation and configuration of Pterodact
    ```bash
    git clone https://github.com/Roman-Emperor-42/pterodactyl-installer.git
    cd pterodactyl-installer/
-   chmod +x install_pterodactyl.sh
-   sudo ./install_pterodactyl.sh
+   chmod +x install_panel_and_wings.sh
+   sudo ./install_panel_and_wings.sh
    ```
 3. **Install Composer Dependencies**  
    When prompted, type `yes` to allow the superuser composer installation.
@@ -134,4 +134,4 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the Apache License. See the `LICENSE` file for details.
